@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.myapplication.MainActivity">
+
+    <!--
+          相对布局：默认的原点左上角,而且支持重叠，相對佈局只能參照屏幕和另外組件
+          layout_align*: 上下左右对齐
+          layout_to*Of  上下左右边
+    -->
+    <Button
+        android:id="@+id/btn_center"
+        android:text="中心"
+        android:layout_centerInParent="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    
+    <Button
+        android:text="中上"
+        android:layout_alignLeft="@+id/btn_center"
+        android:layout_above="@+id/btn_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:text="右下"
+        android:layout_width="wrap_content"
+        android:layout_toRightOf="@+id/btn_center"
+        android:layout_below="@+id/btn_center"
+        android:layout_height="wrap_content" />
+
+
+
+
+</RelativeLayout>

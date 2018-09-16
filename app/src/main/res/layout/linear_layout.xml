@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.example.administrator.myapplication.MainActivity">
+
+    <!-- 线性布局：默认水平,100不能重叠
+          android:layout_weight="1" 权重
+          android:orientation="horizontal": 情况不能居左、中、右
+          android:orientation="vertical": 不能上中下排序
+          android:gravity="": 组件里面内容排序
+          android:layout_gravity="" 组件排序
+    -->
+    
+    <LinearLayout
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+        <TextView
+            android:text="#99CC00"
+            android:gravity="center_horizontal"
+            android:background="#99CC00"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:text="#993333"
+            android:gravity="center"
+            android:background="#993333"
+            android:layout_weight="1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+        <TextView
+            android:text="#336633"
+            android:background="#336633"
+            android:layout_weight="1"
+            android:gravity="center_horizontal|bottom"
+            android:layout_width="0dp"
+            android:layout_height="match_parent" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_weight="1"
+        android:layout_width="match_parent"
+        android:layout_height="0dp">
+
+    </LinearLayout>
+
+
+
+
+
+</LinearLayout>
