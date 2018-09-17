@@ -8,9 +8,16 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.administrator.myapplication.R;
 import com.example.administrator.myapplication.model.Content;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
+import org.xutils.common.Callback;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,17 +35,51 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         // 1：获取listview
-        ListView listview =  (ListView)findViewById(R.id.lv);
-        // 2：模拟数据,后面会访问后台
-        List<Content> conList = new ArrayList<Content>();
-        for (int i=1;i<=20;i++){
-            conList.add(new Content("imageUrl","我是标题" + i,"日期类型"));
-        }
+        final ListView listview =  (ListView)findViewById(R.id.lv);
+        RequestParams params = new RequestParams("http://hiwbs101083.jsp.jspee.com.cn/ajaxServlet");
+//        params.addQueryStringParameter("wd", "xUtils");
+        // 发送get请求信息
+        x.http().get(params, new Callback.CommonCallback<String>() {
+            @Override  // result需要转化json格式
+            public void onSuccess(String result) {
+                Log.i("test","result:" + result);
+                // 把当前string转化json格式
+                Gson gson=new Gson();
+                List<Content> conList = gson.fromJson(result,new TypeToken<List<Content>>(){}.getType());
+                // 不能直接添加,源码抛出异常
+                //   listview.addView(null);
+                // 2：向listview填充数据
+                listview.setAdapter(new MyAdapter(conList));
+//              Toast.makeText(x.app(), result, Toast.LENGTH_LONG).show();
+            }
 
-        // 不能直接添加,源码抛出异常
-//        listview.addView(null);
-        // 2：向listview填充数据
-        listview.setAdapter(new MyAdapter(conList));
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+                Toast.makeText(x.app(), ex.getMessage(), Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+                Toast.makeText(x.app(), "cancelled", Toast.LENGTH_LONG).show();
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
+
+
+
+
+
+
+
+
+
+
+
     }
 
     private class MyAdapter extends BaseAdapter{
