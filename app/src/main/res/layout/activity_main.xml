@@ -24,21 +24,25 @@
 
         <RadioButton
             style="@style/RadioButtonStyle"
+            android:drawableTop="@drawable/png04_selector"
+            android:text="首页" />
+
+
+        <RadioButton
+            style="@style/RadioButtonStyle"
             android:drawableTop="@drawable/png01_selector"
             android:text="朋友圈" />
 
         <RadioButton
             style="@style/RadioButtonStyle"
-            android:drawableTop="@drawable/png02_selector"
-            android:text="设置" />
-        <RadioButton
-            style="@style/RadioButtonStyle"
             android:drawableTop="@drawable/png03_selector"
             android:text="联系人" />
+
         <RadioButton
+            android:id="@+id/btn_set"
             style="@style/RadioButtonStyle"
-            android:drawableTop="@drawable/png04_selector"
-            android:text="首页" />
+            android:drawableTop="@drawable/png02_selector"
+            android:text="设置" />
 
     </RadioGroup>
 
