@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -28,13 +29,9 @@ import org.xutils.x;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
-/*               View
-*
-*        ViewGroup    Button
-*
-*   RelativeLayout
-* */
 @ContentView(value = R.layout.activity_main)
 public class MainActivity extends Activity {
     @ViewInject(R.id.lv)
@@ -45,15 +42,46 @@ public class MainActivity extends Activity {
     private void openSecond(View view){
         // 意圖跳轉activty
         Intent intent = new Intent();
-        // aciton 隐式跳转
-//        intent.setAction("android.intent.action.SECOND");
-//        intent.addCategory("android.intent.category.DEFAULT");
-        // 类的方式是显示跳转
         intent.setClass(this,SecondActivity.class);
         startActivity(intent);
     }
 
+    @Override  // 单击两次APP应用程序退出
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode == KeyEvent.KEYCODE_BACK){
+            // 重写返回按钮
+            Log.i("test","onKeyDown........");
+            exitApp(); // 完成app退出功能
+            return false;
+        }else{
+            return super.onKeyDown(keyCode, event);
+        }
 
+    }
+
+    boolean isExit = false;
+
+    // 通过boolean进行判断
+    private void exitApp(){
+        if (!isExit){
+            isExit = true;
+            Toast.makeText(this,"再按一次退出app",Toast.LENGTH_LONG).show();
+            // 两秒后还原isExit状态
+            new Timer().schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    isExit =false;
+                }
+            },2000);
+        }else{
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            startActivity(intent);
+//            android.os.Process.killProcess(android.os.Process.myPid());
+            // 退出app, 0 正常退出
+            System.exit(0);
+        }
+    }
 
     @Override  // activity初始化时会执行
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,35 +139,7 @@ public class MainActivity extends Activity {
 
     }
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-        Log.i("test", this.getClass() + " onStart........");
-    }
 
-    @Override
-    protected void onResume() {
-        super.onResume();
-        Log.i("test", this.getClass() + " onResume........");
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        Log.i("test", this.getClass() + " onPause........");
-    }
-
-    @Override
-    protected void onStop() {
-        super.onStop();
-        Log.i("test", this.getClass() + " onStop........");
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        Log.i("test", this.getClass() + " onDestroy........");
-    }
 
     private class MyAdapter extends BaseAdapter{
 
