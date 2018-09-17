@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.administrator.myapplication.MainActivity">
+    tools:context="com.example.administrator.myapplication.activity.MainActivity">
 
     <ListView
         android:id="@+id/lv"
@@ -24,20 +24,20 @@
 
         <RadioButton
             style="@style/RadioButtonStyle"
-            android:drawableTop="@drawable/png01"
+            android:drawableTop="@drawable/png01_selector"
             android:text="朋友圈" />
 
         <RadioButton
             style="@style/RadioButtonStyle"
-            android:drawableTop="@drawable/png02"
+            android:drawableTop="@drawable/png02_selector"
             android:text="设置" />
         <RadioButton
             style="@style/RadioButtonStyle"
-            android:drawableTop="@drawable/png03"
+            android:drawableTop="@drawable/png03_selector"
             android:text="联系人" />
         <RadioButton
             style="@style/RadioButtonStyle"
-            android:drawableTop="@drawable/png04"
+            android:drawableTop="@drawable/png04_selector"
             android:text="首页" />
 
     </RadioGroup>

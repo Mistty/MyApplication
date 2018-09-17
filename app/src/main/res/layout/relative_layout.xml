@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.administrator.myapplication.MainActivity">
+    tools:context="com.example.administrator.myapplication.activity.MainActivity">
 
     <!--
           相对布局：默认的原点左上角,而且支持重叠，相對佈局只能參照屏幕和另外組件

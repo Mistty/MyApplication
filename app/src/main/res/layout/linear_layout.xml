@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.example.administrator.myapplication.MainActivity">
+    tools:context="com.example.administrator.myapplication.activity.MainActivity">
 
     <!-- 线性布局：默认水平,100不能重叠
           android:layout_weight="1" 权重
